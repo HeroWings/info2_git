@@ -5,39 +5,25 @@
 #include <ctype.h>
 
 static int numberOfNames = 0;
-static char archive[MAX_NAMES][MAX_NAME_LEN] = {0};
+static char **archive;
 static int compNames(const void*, const void*);
+#define MAX_NAME_LEN 10
 
 // Fügt einen Namen hinzu. Im Fehlerfall (kein Speicher mehr) soll 0, ansonsten 1 zurückgegeben werden.
 int addName(const char *name)
 {
-    // Versuch Philipp
-    if(numberOfNames >= MAX_NAMES) return(0); //Abbrechne wenn alle Berreiche vergeben oder Name zu lang
-    char *addr_names = archive[numberOfNames];
-    for(int i = 0; i < MAX_NAME_LEN; i++) *(addr_names +i) = *(name + i);
-    numberOfNames++;
-    return(1);
-
-/*
-    // Versuch Maxl
-    if (numberOfNames >= MAX_NAMES) // Archiv voll
-    {
-        return 0;
-    }
-    else
-    {
-        if (strlen(name) > MAX_NAME_LEN)
-        {
-            strncpy(archive[numberOfNames++], name, MAX_NAME_LEN);
-        }
-        else
-        {
-            strcpy(archive[numberOfNames++], name);
-        }
-        return 1;
-    }l
-}
-*/
+	//Platz für weiteren Namen hinzufügen
+	archive = realloc(archive, numberOfNames+1);
+	if(archive == NULL) return 0;
+	
+	//Platz für den zusätzlichen Namen allocaten
+	archive[numberOfNames] = (char*) malloc(strlen(name)+1);
+	if(archive[numberOfNames] == NULL) return 0;
+	
+	//Namen an Listenende einfügen
+	strcpy(archive[numberOfNames], name);
+	numberOfNames++;
+	return 1;
 }
 
 // Wie addName. Fügt Namen aber direkt sortiert hinzu. Voraussetzung ist ein bereits sortiertes Archiv.
