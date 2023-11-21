@@ -81,6 +81,7 @@ int removeName(const char *name)
     for(int i = 0; i < numberOfNames; i++) {
         if(strcmp(archive[i], name) == 0) {
             for(int j = i; j < numberOfNames; j++) {
+                archive[j-1]=(char*)realloc(archive[j-1],strlen(archive[j])*sizeof(char));
                 strcpy(archive[j-1], archive[j]); // Hans [j+1] -> Alexander [j] -> Hans\0nder [j]
             }
             numberOfNames--;
