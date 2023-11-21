@@ -63,7 +63,7 @@ int addNameSorted(const char *name)
 int removeName(const char *name)
 {
     for(int i = 0; i < numberOfNames; i++) {
-        if(strncmp(archive[i], name, MAX_NAME_LEN) == 0) {
+        if(strcmp(archive[i], name) == 0) {
             for(int j = i; j < numberOfNames; j++) {
                 strcpy(archive[j-1], archive[j]); // Hans [j+1] -> Alexander [j] -> Hans\0nder [j]
             }
@@ -71,6 +71,7 @@ int removeName(const char *name)
             return 1;
         }
     }
+    free(archive[numberOfNames]);
     return 0;
 }
 
