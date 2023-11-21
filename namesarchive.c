@@ -16,7 +16,7 @@ int addName(const char *name)
     char *addr_names = archive[numberOfNames];
     for(int i = 0; i < MAX_NAME_LEN; i++) *(addr_names +i) = *(name + i);
     numberOfNames++;
-    return(1);
+    return(0);
 
 /*
     // Versuch Maxl
