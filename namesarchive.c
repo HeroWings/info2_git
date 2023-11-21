@@ -16,7 +16,7 @@ int addName(const char *name)
     char *addr_names = archive[numberOfNames];
     for(int i = 0; i < MAX_NAME_LEN; i++) *(addr_names +i) = *(name + i);
     numberOfNames++;
-    return(1);
+    return(0);
 
 /*
     // Versuch Maxl
@@ -118,7 +118,7 @@ void printNames()
 // Leert das Archiv
 void clearArchive()
 {
-    
+
 }
 
 static int compNames(const void* arg1, const void* arg2) { // returns 1 when arg1 > arg2
@@ -145,4 +145,5 @@ static int compNames(const void* arg1, const void* arg2) { // returns 1 when arg
     if(name1[i] != '\0') return -1;
     if(name2[i] != '\0') return 1;
     return 0;
+    // Test
 }
