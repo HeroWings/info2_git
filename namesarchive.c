@@ -12,6 +12,7 @@ static int compNames(const void*, const void*);
 // Fügt einen Namen hinzu. Im Fehlerfall (kein Speicher mehr) soll 0, ansonsten 1 zurückgegeben werden.
 int addName(const char *name)
 {
+<<<<<<< HEAD
 	//Platz für weiteren Namen hinzufügen
 	archive = realloc(archive, numberOfNames+1);
 	if(archive == NULL) return 0;
@@ -24,6 +25,35 @@ int addName(const char *name)
 	strcpy(archive[numberOfNames], name);
 	numberOfNames++;
 	return 1;
+=======
+    // Versuch Philipp
+    if(numberOfNames >= MAX_NAMES) return(0); //Abbrechne wenn alle Berreiche vergeben oder Name zu lang
+    char *addr_names = archive[numberOfNames];
+    for(int i = 0; i < MAX_NAME_LEN; i++) *(addr_names +i) = *(name + i);
+    numberOfNames++;
+    return(0);
+
+/*
+    // Versuch Maxl
+    if (numberOfNames >= MAX_NAMES) // Archiv voll
+    {
+        return 0;
+    }
+    else
+    {
+        if (strlen(name) > MAX_NAME_LEN)
+        {
+            strncpy(archive[numberOfNames++], name, MAX_NAME_LEN);
+        }
+        else
+        {
+            strcpy(archive[numberOfNames++], name);
+        }
+        return 1;
+    }l
+}
+*/
+>>>>>>> 5e333eb1bad31f01c6350ad5cfab348713e829a5
 }
 
 // Wie addName. Fügt Namen aber direkt sortiert hinzu. Voraussetzung ist ein bereits sortiertes Archiv.
@@ -49,7 +79,7 @@ int addNameSorted(const char *name)
 int removeName(const char *name)
 {
     for(int i = 0; i < numberOfNames; i++) {
-        if(strncmp(archive[i], name, MAX_NAME_LEN) == 0) {
+        if(strcmp(archive[i], name) == 0) {
             for(int j = i; j < numberOfNames; j++) {
                 strcpy(archive[j-1], archive[j]); // Hans [j+1] -> Alexander [j] -> Hans\0nder [j]
             }
@@ -57,6 +87,7 @@ int removeName(const char *name)
             return 1;
         }
     }
+    free(archive[numberOfNames]);
     return 0;
 }
 
@@ -103,7 +134,7 @@ void printNames()
 // Leert das Archiv
 void clearArchive()
 {
-    
+
 }
 
 static int compNames(const void* arg1, const void* arg2) { // returns 1 when arg1 > arg2
@@ -130,4 +161,5 @@ static int compNames(const void* arg1, const void* arg2) { // returns 1 when arg
     if(name1[i] != '\0') return -1;
     if(name2[i] != '\0') return 1;
     return 0;
+    // Test
 }
