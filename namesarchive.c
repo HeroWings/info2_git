@@ -117,7 +117,7 @@ void printNames()
 // Leert das Archiv
 void clearArchive()
 {
-    
+
 }
 
 static int compNames(const void* arg1, const void* arg2) { // returns 1 when arg1 > arg2
@@ -144,4 +144,5 @@ static int compNames(const void* arg1, const void* arg2) { // returns 1 when arg
     if(name1[i] != '\0') return -1;
     if(name2[i] != '\0') return 1;
     return 0;
+    // Test
 }
