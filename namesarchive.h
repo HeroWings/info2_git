@@ -1,6 +1,8 @@
 #ifndef NAMEARCHIVE_H
 #define NAMEARCHIVE_H
 
+
+
 // Fügt einen Namen hinzu. Im Fehlerfall (kein Speicher mehr) soll 0, ansonsten 1 zurückgegeben werden.
 int addName(const char *name);
 // Wie addName. Fügt Namen aber direkt sortiert hinzu. Voraussetzung ist ein bereits sortiertes Archiv.
